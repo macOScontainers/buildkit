@@ -166,6 +166,15 @@ func NewAttach(opts ...Opt) Attach {
 		if fifos == nil {
 			return nil, fmt.Errorf("cannot attach, missing fifos")
 		}
+		if streams.Stdin == nil {
+			fifos.Stdin = ""
+		}
+		if streams.Stdout == nil {
+			fifos.Stdout = ""
+		}
+		if streams.Stderr == nil {
+			fifos.Stderr = ""
+		}
 		return copyIO(fifos, streams)
 	}
 }
@@ -236,6 +245,20 @@ func LogURI(uri *url.URL) Creator {
 			config: Config{
 				Stdout: uri.String(),
 				Stderr: uri.String(),
+			},
+		}, nil
+	}
+}
+
+// TerminalLogURI provides the raw logging URI
+// as well as sets the terminal option to true.
+func TerminalLogURI(uri *url.URL) Creator {
+	return func(_ string) (IO, error) {
+		return &logURI{
+			config: Config{
+				Stdout:   uri.String(),
+				Stderr:   uri.String(),
+				Terminal: true,
 			},
 		}, nil
 	}

@@ -102,6 +102,9 @@
 // unless it is explicitly provided. This is treated as equivalent to armhf. A
 // previous architecture, armel, will be normalized to arm/v6.
 //
+// Similarly, the most common arm64 version v8, and most common amd64 version v1
+// are represented without the variant.
+//
 // While these normalizations are provided, their support on arm platforms has
 // not yet been fully implemented and tested.
 package platforms
@@ -116,6 +119,7 @@ import (
 
 	specs "github.com/opencontainers/image-spec/specs-go/v1"
 
+	"github.com/containerd/containerd/api/types"
 	"github.com/containerd/containerd/errdefs"
 )
 
@@ -158,6 +162,19 @@ func (m *matcher) String() string {
 	return Format(m.Platform)
 }
 
+// ParseAll parses a list of platform specifiers into a list of platform.
+func ParseAll(specifiers []string) ([]specs.Platform, error) {
+	platforms := make([]specs.Platform, len(specifiers))
+	for i, s := range specifiers {
+		p, err := Parse(s)
+		if err != nil {
+			return nil, fmt.Errorf("invalid platform %s: %w", s, err)
+		}
+		platforms[i] = p
+	}
+	return platforms, nil
+}
+
 // Parse parses the platform specifier syntax into a platform declaration.
 //
 // Platform specifiers are in the format `<os>|<arch>|<os>/<arch>[/<variant>]`.
@@ -196,6 +213,10 @@ func Parse(specifier string) (specs.Platform, error) {
 				p.Variant = cpuVariant()
 			}
 
+			if p.OS == "windows" {
+				p.OSVersion = GetWindowsOsVersion()
+			}
+
 			return p, nil
 		}
 
@@ -218,6 +239,10 @@ func Parse(specifier string) (specs.Platform, error) {
 			p.Variant = ""
 		}
 
+		if p.OS == "windows" {
+			p.OSVersion = GetWindowsOsVersion()
+		}
+
 		return p, nil
 	case 3:
 		// we have a fully specified variant, this is rare
@@ -225,6 +250,10 @@ func Parse(specifier string) (specs.Platform, error) {
 		p.Architecture, p.Variant = normalizeArch(parts[1], parts[2])
 		if p.Architecture == "arm64" && p.Variant == "" {
 			p.Variant = "v8"
+		}
+
+		if p.OS == "windows" {
+			p.OSVersion = GetWindowsOsVersion()
 		}
 
 		return p, nil
@@ -261,4 +290,31 @@ func Normalize(platform specs.Platform) specs.Platform {
 	platform.Architecture, platform.Variant = normalizeArch(platform.Architecture, platform.Variant)
 
 	return platform
+}
+
+// ToProto converts from a slice of [Platform] to a slice of
+// the protobuf definition [types.Platform].
+func ToProto(platforms []Platform) []*types.Platform {
+	ap := make([]*types.Platform, len(platforms))
+	for i := range platforms {
+		p := types.Platform{
+			OS:           platforms[i].OS,
+			Architecture: platforms[i].Architecture,
+			Variant:      platforms[i].Variant,
+		}
+		ap[i] = &p
+	}
+	return ap
+}
+
+// FromProto converts a slice of the protobuf definition [types.Platform]
+// to a slice of [Platform].
+func FromProto(platforms []*types.Platform) []Platform {
+	op := make([]Platform, len(platforms))
+	for i := range platforms {
+		op[i].OS = platforms[i].OS
+		op[i].Architecture = platforms[i].Architecture
+		op[i].Variant = platforms[i].Variant
+	}
+	return op
 }
