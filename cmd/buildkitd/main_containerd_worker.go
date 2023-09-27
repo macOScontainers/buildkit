@@ -1,10 +1,8 @@
-//go:build linux || windows || freebsd
-// +build linux windows freebsd
-
 package main
 
 import (
 	"context"
+	"github.com/containerd/containerd/plugins"
 	"os"
 	"runtime"
 	"strconv"
@@ -16,7 +14,6 @@ import (
 	"github.com/containerd/containerd/defaults"
 	runtimeoptions "github.com/containerd/containerd/pkg/runtimeoptions/v1"
 	"github.com/containerd/containerd/pkg/userns"
-	"github.com/containerd/containerd/plugin"
 	runcoptions "github.com/containerd/containerd/runtime/v2/runc/options"
 	"github.com/moby/buildkit/cmd/buildkitd/config"
 	"github.com/moby/buildkit/util/bklog"
@@ -49,7 +46,7 @@ func init() {
 	}
 
 	if defaultConf.Workers.Containerd.Address == "" {
-		defaultConf.Workers.Containerd.Address = defaultContainerdAddress
+		defaultConf.Workers.Containerd.Address = defaults.DefaultAddress
 	}
 
 	if defaultConf.Workers.Containerd.Namespace == "" {
@@ -184,7 +181,7 @@ func init() {
 
 func applyContainerdFlags(c *cli.Context, cfg *config.Config) error {
 	if cfg.Workers.Containerd.Address == "" {
-		cfg.Workers.Containerd.Address = defaultContainerdAddress
+		cfg.Workers.Containerd.Address = defaults.DefaultAddress
 	}
 
 	if c.GlobalIsSet("containerd-worker") {
@@ -374,7 +371,7 @@ func validContainerdSocket(cfg config.ContainerdConfig) bool {
 // getRuntimeOptionsType gets empty runtime options by the runtime type name.
 func getRuntimeOptionsType(t string) interface{} {
 	switch t {
-	case plugin.RuntimeRuncV2:
+	case plugins.RuntimeRuncV2:
 		return &runcoptions.Options{}
 	case runtimeRunhcsV1:
 		return &runhcsoptions.Options{}
