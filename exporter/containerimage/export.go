@@ -9,15 +9,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/errdefs"
-	"github.com/containerd/containerd/images"
-	"github.com/containerd/containerd/labels"
-	"github.com/containerd/containerd/leases"
-	"github.com/containerd/containerd/pkg/epoch"
-	"github.com/containerd/containerd/platforms"
-	"github.com/containerd/containerd/remotes/docker"
-	"github.com/containerd/containerd/rootfs"
+	"github.com/containerd/containerd/v2/core/content"
+	"github.com/containerd/containerd/v2/core/images"
+	"github.com/containerd/containerd/v2/core/leases"
+	"github.com/containerd/containerd/v2/core/remotes/docker"
+	"github.com/containerd/containerd/v2/pkg/epoch"
+	"github.com/containerd/containerd/v2/pkg/labels"
+	"github.com/containerd/containerd/v2/pkg/rootfs"
+	"github.com/containerd/errdefs"
+	"github.com/containerd/platforms"
 	"github.com/moby/buildkit/cache"
 	cacheconfig "github.com/moby/buildkit/cache/config"
 	"github.com/moby/buildkit/exporter"
@@ -252,7 +252,7 @@ func (e *imageExporterInstance) Export(ctx context.Context, src *exporter.Source
 				//
 				// Ideally, we should be able to propagate the epoch via images.Image.CreatedAt.
 				// However, due to a bug of containerd, we are temporarily stuck with this workaround.
-				// https://github.com/containerd/containerd/issues/8322
+				// https://github.com/containerd/containerd/v2/issues/8322
 				imageClientCtx := ctx
 				if e.opts.Epoch != nil {
 					imageClientCtx = epoch.WithSourceDateEpoch(imageClientCtx, e.opts.Epoch)
