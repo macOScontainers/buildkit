@@ -4,7 +4,7 @@ import (
 	"golang.org/x/sys/unix"
 	"os"
 
-	"github.com/containerd/containerd/mount"
+	"github.com/containerd/containerd/v2/core/mount"
 	"github.com/pkg/errors"
 )
 

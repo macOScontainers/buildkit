@@ -2,7 +2,7 @@ package main
 
 import (
 	runhcsoptions "github.com/Microsoft/hcsshim/cmd/containerd-shim-runhcs-v1/options"
-	runtimeoptions "github.com/containerd/containerd/pkg/runtimeoptions/v1"
+	runtimeoptions "github.com/containerd/containerd/api/types/runtimeoptions/v1"
 )
 
 const runtimeRunhcsV1 = "io.containerd.runhcs.v1"

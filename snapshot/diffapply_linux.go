@@ -8,10 +8,10 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/containerd/containerd/leases"
-	"github.com/containerd/containerd/mount"
-	"github.com/containerd/containerd/snapshots"
-	"github.com/containerd/containerd/snapshots/overlay/overlayutils"
+	"github.com/containerd/containerd/v2/core/leases"
+	"github.com/containerd/containerd/v2/core/mount"
+	"github.com/containerd/containerd/v2/core/snapshots"
+	"github.com/containerd/containerd/v2/plugins/snapshots/overlay/overlayutils"
 	"github.com/containerd/continuity/fs"
 	"github.com/containerd/continuity/sysx"
 	"github.com/hashicorp/go-multierror"
@@ -609,7 +609,7 @@ func (d *differ) doubleWalkingChanges(ctx context.Context, handle func(context.C
 
 		// NOTE: it's tempting to skip creating parent dirs when change kind is Delete, but
 		// that would make us incompatible with the image exporter code:
-		// https://github.com/containerd/containerd/pull/2095
+		// https://github.com/containerd/containerd/v2/pull/2095
 		if err := d.checkParent(ctx, subPath, handle); err != nil {
 			return errors.Wrapf(err, "failed to check parent for %s", subPath)
 		}

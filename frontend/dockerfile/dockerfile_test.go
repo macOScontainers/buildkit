@@ -29,12 +29,10 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/anypb"
 
-	"github.com/containerd/containerd"
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/content/local"
-	"github.com/containerd/containerd/content/proxy"
-	"github.com/containerd/containerd/namespaces"
-	"github.com/containerd/containerd/snapshots"
+	"github.com/containerd/containerd/v2/core/content"
+	"github.com/containerd/containerd/v2/core/snapshots"
+	"github.com/containerd/containerd/v2/pkg/namespaces"
+	"github.com/containerd/containerd/v2/plugins/content/local"
 	"github.com/containerd/continuity/fs/fstest"
 	"github.com/containerd/platforms"
 	intoto "github.com/in-toto/in-toto-golang/in_toto"
@@ -3359,7 +3357,7 @@ func testUserAdditionalGids(t *testing.T, sb integration.Sandbox) {
 	f := getFrontend(t, sb)
 
 	dockerfile := []byte(`
-# Mimics the tests in https://github.com/containerd/containerd/commit/3eda46af12b1deedab3d0802adb2e81cb3521950
+# Mimics the tests in https://github.com/containerd/containerd/v2/commit/3eda46af12b1deedab3d0802adb2e81cb3521950
 FROM busybox
 SHELL ["/bin/sh", "-euxc"]
 RUN [ "$(id)" = "uid=0(root) gid=0(root) groups=0(root),10(wheel)" ]

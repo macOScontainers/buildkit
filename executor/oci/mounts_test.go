@@ -4,7 +4,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/containerd/containerd/oci"
+	"github.com/containerd/containerd/v2/pkg/oci"
 	"github.com/moby/buildkit/util/appcontext"
 	specs "github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/stretchr/testify/assert"
@@ -12,7 +12,7 @@ import (
 )
 
 // The default mount-list from containerd
-// https://github.com/containerd/containerd/blob/main/oci/mounts.go
+// https://github.com/containerd/containerd/v2/blob/main/oci/mounts.go
 var containerdDefMounts = []specs.Mount{
 	{
 		Destination: "/proc",

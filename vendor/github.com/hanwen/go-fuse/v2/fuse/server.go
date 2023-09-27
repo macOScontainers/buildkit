@@ -325,8 +325,10 @@ func (ms *Server) readRequest(exitIdle bool) (req *request, code Status) {
 	ms.reqReaders++
 	ms.reqMu.Unlock()
 
-	req = ms.reqPool.Get().(*request)
-	dest := ms.readPool.Get().([]byte)
+	reqIface := ms.reqPool.Get()
+	req = reqIface.(*request)
+	destIface := ms.readPool.Get()
+	dest := destIface.([]byte)
 
 	var n int
 	err := handleEINTR(func() error {
@@ -336,7 +338,7 @@ func (ms *Server) readRequest(exitIdle bool) (req *request, code Status) {
 	})
 	if err != nil {
 		code = ToStatus(err)
-		ms.reqPool.Put(req)
+		ms.reqPool.Put(reqIface)
 		ms.reqMu.Lock()
 		ms.reqReaders--
 		ms.reqMu.Unlock()
@@ -357,8 +359,7 @@ func (ms *Server) readRequest(exitIdle bool) (req *request, code Status) {
 	req.inflightIndex = len(ms.reqInflight)
 	ms.reqInflight = append(ms.reqInflight, req)
 	if !gobbled {
-		ms.readPool.Put(dest)
-		dest = nil
+		ms.readPool.Put(destIface)
 	}
 	ms.reqReaders--
 	if !ms.singleReader && ms.reqReaders <= 0 {
@@ -507,7 +508,7 @@ func (ms *Server) handleRequest(req *request) Status {
 		defer ms.requestProcessingMu.Unlock()
 	}
 
-	req.parse()
+	req.parse(ms.kernelSettings)
 	if req.handler == nil {
 		req.status = ENOSYS
 	}
@@ -528,15 +529,22 @@ func (ms *Server) handleRequest(req *request) Status {
 
 	errNo := ms.write(req)
 	if errNo != 0 {
-		// Unless debugging is enabled, ignore ENOENT for INTERRUPT responses
-		// which indicates that the referred request is no longer known by the
-		// kernel. This is a normal if the referred request already has
-		// completed.
-		if ms.opts.Debug || !(req.inHeader.Opcode == _OP_INTERRUPT && errNo == ENOENT) {
+		// Ignore ENOENT for INTERRUPT responses which
+		// indicates that the referred request is no longer
+		// known by the kernel. This is a normal if the
+		// referred request already has completed.
+		//
+		// Ignore ENOENT for RELEASE responses.  When the FS
+		// is unmounted directly after a file close, the
+		// device can go away while we are still processing
+		// RELEASE. This is because RELEASE is analogous to
+		// FORGET, and is not synchronized with the calling
+		// process, but does require a response.
+		if ms.opts.Debug || !(errNo == ENOENT && (req.inHeader.Opcode == _OP_INTERRUPT ||
+			req.inHeader.Opcode == _OP_RELEASE)) {
 			ms.opts.Logger.Printf("writer: Write/Writev failed, err: %v. opcode: %v",
 				errNo, operationName(req.inHeader.Opcode))
 		}
-
 	}
 	ms.returnRequest(req)
 	return Status(errNo)
@@ -903,6 +911,12 @@ func (in *InitIn) SupportsNotify(notifyType int) bool {
 		return in.SupportsVersion(7, 18)
 	}
 	return false
+}
+
+// supportsRenameSwap returns whether the kernel supports the
+// renamex_np(2) syscall. This is only supported on OS X.
+func (in *InitIn) supportsRenameSwap() bool {
+	return in.Flags&CAP_RENAME_SWAP != 0
 }
 
 // WaitMount waits for the first request to be served. Use this to
