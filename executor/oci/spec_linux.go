@@ -7,9 +7,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/containerd/containerd/containers"
-	"github.com/containerd/containerd/oci"
-	cdseccomp "github.com/containerd/containerd/pkg/seccomp"
+	"github.com/containerd/containerd/v2/containers"
+	"github.com/containerd/containerd/v2/oci"
+	cdseccomp "github.com/containerd/containerd/v2/pkg/seccomp"
 	"github.com/docker/docker/pkg/idtools"
 	"github.com/docker/docker/profiles/seccomp"
 	"github.com/moby/buildkit/solver/pb"

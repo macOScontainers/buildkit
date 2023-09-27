@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/containerd/containerd/platforms"
+	"github.com/containerd/containerd/v2/platforms"
 	digest "github.com/opencontainers/go-digest"
 	ocispecs "github.com/opencontainers/image-spec/specs-go/v1"
 	packageurl "github.com/package-url/packageurl-go"

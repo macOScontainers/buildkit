@@ -3,8 +3,8 @@ package build
 import (
 	"strings"
 
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/content/local"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/content/local"
 	"github.com/pkg/errors"
 )
 

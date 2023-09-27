@@ -1,7 +1,7 @@
 package oci
 
 import (
-	"github.com/containerd/containerd/oci"
+	"github.com/containerd/containerd/v2/oci"
 	"github.com/docker/docker/pkg/idtools"
 	"github.com/moby/buildkit/solver/pb"
 	specs "github.com/opencontainers/runtime-spec/specs-go"

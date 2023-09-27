@@ -4,9 +4,9 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/containerd/containerd/leases"
-	"github.com/containerd/containerd/pkg/userns"
-	"github.com/containerd/containerd/snapshots"
+	"github.com/containerd/containerd/v2/leases"
+	"github.com/containerd/containerd/v2/pkg/userns"
+	"github.com/containerd/containerd/v2/snapshots"
 	"github.com/moby/buildkit/identity"
 	"github.com/moby/buildkit/util/bklog"
 	"github.com/moby/buildkit/util/leaseutil"

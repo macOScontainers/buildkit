@@ -74,7 +74,7 @@ func buildkit(opt buildOpt) llb.State {
 	r = copy(runc(opt.runc), "/usr/bin/runc", r, "/bin/")
 	r = copy(buildkitd.Root(), "/bin/buildkitd", r, "/bin/")
 	if opt.withContainerd {
-		r = copy(containerd(opt.containerd), "/go/src/github.com/containerd/containerd/bin/containerd", r, "/bin/")
+		r = copy(containerd(opt.containerd), "/go/src/github.com/containerd/containerd/v2/bin/containerd", r, "/bin/")
 	}
 	return r
 }

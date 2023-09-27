@@ -22,12 +22,11 @@ import (
 
 	v1 "github.com/moby/buildkit/cache/remotecache/v1"
 
-	"github.com/containerd/containerd"
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/content/local"
-	"github.com/containerd/containerd/namespaces"
-	"github.com/containerd/containerd/platforms"
-	"github.com/containerd/containerd/snapshots"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/content/local"
+	"github.com/containerd/containerd/v2/namespaces"
+	"github.com/containerd/containerd/v2/platforms"
+	"github.com/containerd/containerd/v2/snapshots"
 	"github.com/containerd/continuity/fs/fstest"
 	intoto "github.com/in-toto/in-toto-golang/in_toto"
 	controlapi "github.com/moby/buildkit/api/services/control"
@@ -2965,7 +2964,7 @@ func testUserAdditionalGids(t *testing.T, sb integration.Sandbox) {
 	f := getFrontend(t, sb)
 
 	dockerfile := []byte(`
-# Mimics the tests in https://github.com/containerd/containerd/commit/3eda46af12b1deedab3d0802adb2e81cb3521950
+# Mimics the tests in https://github.com/containerd/containerd/v2/commit/3eda46af12b1deedab3d0802adb2e81cb3521950
 FROM busybox
 SHELL ["/bin/sh", "-euxc"]
 RUN [ "$(id)" = "uid=0(root) gid=0(root) groups=0(root),10(wheel)" ]

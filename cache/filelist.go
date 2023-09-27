@@ -9,7 +9,7 @@ import (
 	"path"
 	"sort"
 
-	cdcompression "github.com/containerd/containerd/archive/compression"
+	cdcompression "github.com/containerd/containerd/v2/archive/compression"
 	"github.com/moby/buildkit/session"
 )
 

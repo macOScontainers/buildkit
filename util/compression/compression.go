@@ -5,9 +5,9 @@ import (
 	"context"
 	"io"
 
-	cdcompression "github.com/containerd/containerd/archive/compression"
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/images"
+	cdcompression "github.com/containerd/containerd/v2/archive/compression"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/images"
 	"github.com/containerd/stargz-snapshotter/estargz"
 	"github.com/moby/buildkit/util/bklog"
 	"github.com/moby/buildkit/util/iohelper"

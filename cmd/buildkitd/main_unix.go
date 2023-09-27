@@ -9,7 +9,7 @@ import (
 	"os"
 	"syscall"
 
-	"github.com/containerd/containerd/sys"
+	"github.com/containerd/containerd/v2/sys"
 	"github.com/coreos/go-systemd/v22/activation"
 	"github.com/pkg/errors"
 )

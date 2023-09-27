@@ -8,9 +8,9 @@ import (
 	"context"
 	"io"
 
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/errdefs"
-	"github.com/containerd/containerd/labels"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/errdefs"
+	"github.com/containerd/containerd/v2/labels"
 	"github.com/moby/buildkit/session"
 	"github.com/moby/buildkit/util/compression"
 	digest "github.com/opencontainers/go-digest"

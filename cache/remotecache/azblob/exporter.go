@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/storage/azblob"
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/labels"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/labels"
 	"github.com/moby/buildkit/cache/remotecache"
 	v1 "github.com/moby/buildkit/cache/remotecache/v1"
 	"github.com/moby/buildkit/session"

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	archiveexporter "github.com/containerd/containerd/images/archive"
-	"github.com/containerd/containerd/leases"
+	archiveexporter "github.com/containerd/containerd/v2/images/archive"
+	"github.com/containerd/containerd/v2/leases"
 	"github.com/distribution/reference"
 	"github.com/moby/buildkit/cache"
 	cacheconfig "github.com/moby/buildkit/cache/config"

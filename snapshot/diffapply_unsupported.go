@@ -6,8 +6,8 @@ import (
 	"context"
 	"runtime"
 
-	"github.com/containerd/containerd/leases"
-	"github.com/containerd/containerd/snapshots"
+	"github.com/containerd/containerd/v2/leases"
+	"github.com/containerd/containerd/v2/snapshots"
 	"github.com/pkg/errors"
 )
 

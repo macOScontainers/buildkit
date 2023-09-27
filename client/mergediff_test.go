@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/containerd/containerd/errdefs"
-	"github.com/containerd/containerd/images"
-	"github.com/containerd/containerd/namespaces"
+	"github.com/containerd/containerd/v2/errdefs"
+	"github.com/containerd/containerd/v2/images"
+	"github.com/containerd/containerd/v2/namespaces"
 	"github.com/containerd/continuity/fs/fstest"
 	"github.com/moby/buildkit/client/llb"
 	"github.com/moby/buildkit/util/testutil/integration"
@@ -422,7 +422,7 @@ func diffOpTestCases() (tests []integration.Test) {
 					// Surprisingly, it's expected that /extradir shows up in the diff.
 					// This is the behavior of the exporter, so we have to enforce
 					// consistency with it.
-					// https://github.com/containerd/containerd/pull/2095
+					// https://github.com/containerd/containerd/v2/pull/2095
 					fstest.CreateDir("/extradir", 0755),
 				),
 			),

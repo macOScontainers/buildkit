@@ -4,9 +4,9 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/remotes/docker"
-	"github.com/containerd/containerd/snapshots"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/remotes/docker"
+	"github.com/containerd/containerd/v2/snapshots"
 	"github.com/distribution/reference"
 	"github.com/moby/buildkit/cache/remotecache"
 	"github.com/moby/buildkit/session"

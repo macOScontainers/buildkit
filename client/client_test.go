@@ -26,16 +26,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/containerd/containerd"
-	"github.com/containerd/containerd/content"
-	"github.com/containerd/containerd/content/local"
-	"github.com/containerd/containerd/content/proxy"
-	ctderrdefs "github.com/containerd/containerd/errdefs"
-	"github.com/containerd/containerd/images"
-	"github.com/containerd/containerd/namespaces"
-	"github.com/containerd/containerd/platforms"
-	"github.com/containerd/containerd/remotes/docker"
-	"github.com/containerd/containerd/snapshots"
+	"github.com/containerd/containerd/v2/content"
+	"github.com/containerd/containerd/v2/content/local"
+	"github.com/containerd/containerd/v2/content/proxy"
+	ctderrdefs "github.com/containerd/containerd/v2/errdefs"
+	"github.com/containerd/containerd/v2/images"
+	"github.com/containerd/containerd/v2/namespaces"
+	"github.com/containerd/containerd/v2/platforms"
+	"github.com/containerd/containerd/v2/remotes/docker"
+	"github.com/containerd/containerd/v2/snapshots"
 	"github.com/containerd/continuity/fs/fstest"
 	"github.com/distribution/reference"
 	intoto "github.com/in-toto/in-toto-golang/in_toto"
@@ -3088,7 +3087,7 @@ func testSourceDateEpochImageExporter(t *testing.T, sb integration.Sandbox) {
 	if cdAddress == "" {
 		t.SkipNow()
 	}
-	// https://github.com/containerd/containerd/commit/133ddce7cf18a1db175150e7a69470dea1bb3132
+	// https://github.com/containerd/containerd/v2/commit/133ddce7cf18a1db175150e7a69470dea1bb3132
 	containerdutil.CheckVersion(t, cdAddress, ">= 1.7.0-beta.1")
 
 	workers.CheckFeatureCompat(t, sb, workers.FeatureSourceDateEpoch)

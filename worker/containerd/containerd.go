@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/containerd/containerd"
-	"github.com/containerd/containerd/gc"
-	"github.com/containerd/containerd/leases"
-	"github.com/containerd/containerd/platforms"
-	ptypes "github.com/containerd/containerd/protobuf/types"
+	containerd "github.com/containerd/containerd/v2/client"
+	"github.com/containerd/containerd/v2/gc"
+	"github.com/containerd/containerd/v2/leases"
+	"github.com/containerd/containerd/v2/platforms"
+	ptypes "github.com/containerd/containerd/v2/protobuf/types"
 	"github.com/moby/buildkit/cache"
 	"github.com/moby/buildkit/cache/metadata"
 	"github.com/moby/buildkit/executor/containerdexecutor"
@@ -30,7 +30,7 @@ import (
 type RuntimeInfo = containerdexecutor.RuntimeInfo
 
 // NewWorkerOpt creates a WorkerOpt.
-func NewWorkerOpt(root string, address, snapshotterName, ns string, rootless bool, labels map[string]string, dns *oci.DNSConfig, nopt netproviders.Opt, apparmorProfile string, selinux bool, parallelismSem *semaphore.Weighted, traceSocket string, runtime *RuntimeInfo, opts ...containerd.ClientOpt) (base.WorkerOpt, error) {
+func NewWorkerOpt(root string, address, snapshotterName, ns string, rootless bool, labels map[string]string, dns *oci.DNSConfig, nopt netproviders.Opt, apparmorProfile string, selinux bool, parallelismSem *semaphore.Weighted, traceSocket string, runtime *RuntimeInfo, opts ...containerd.Opt) (base.WorkerOpt, error) {
 	opts = append(opts, containerd.WithDefaultNamespace(ns))
 
 	client, err := containerd.New(address, opts...)

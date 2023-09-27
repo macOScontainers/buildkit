@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/containerd/containerd/plugins"
+	"github.com/containerd/containerd/v2/plugins"
 	"os"
 	"runtime"
 	"strconv"
@@ -10,11 +10,11 @@ import (
 	"time"
 
 	runhcsoptions "github.com/Microsoft/hcsshim/cmd/containerd-shim-runhcs-v1/options"
-	ctd "github.com/containerd/containerd"
-	"github.com/containerd/containerd/defaults"
-	runtimeoptions "github.com/containerd/containerd/pkg/runtimeoptions/v1"
-	"github.com/containerd/containerd/pkg/userns"
-	runcoptions "github.com/containerd/containerd/runtime/v2/runc/options"
+	ctd "github.com/containerd/containerd/v2/client"
+	"github.com/containerd/containerd/v2/defaults"
+	runtimeoptions "github.com/containerd/containerd/v2/pkg/runtimeoptions/v1"
+	"github.com/containerd/containerd/v2/pkg/userns"
+	runcoptions "github.com/containerd/containerd/v2/runtime/v2/runc/options"
 	"github.com/moby/buildkit/cmd/buildkitd/config"
 	"github.com/moby/buildkit/util/bklog"
 	"github.com/moby/buildkit/util/network/cniprovider"
