@@ -72,7 +72,7 @@ func buildkit(opt buildOpt) llb.State {
 
 	if opt.withContainerd {
 		r = r.With(
-			copyFrom(containerd(opt.containerd), "/go/src/github.com/containerd/containerd/bin/containerd", "/bin/"),
+			copyFrom(containerd(opt.containerd), "/go/src/github.com/containerd/containerd/v2/bin/containerd", "/bin/"),
 		)
 	}
 	return r

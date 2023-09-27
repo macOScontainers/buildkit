@@ -5,13 +5,13 @@ import (
 	"testing"
 	"time"
 
-	containerdpkg "github.com/containerd/containerd"
+	containerd "github.com/containerd/containerd/v2/client"
 )
 
 func GetVersion(t *testing.T, cdAddress string) string {
 	t.Helper()
 
-	cdClient, err := containerdpkg.New(cdAddress, containerdpkg.WithTimeout(60*time.Second))
+	cdClient, err := containerd.New(cdAddress, containerd.WithTimeout(60*time.Second))
 	if err != nil {
 		t.Fatal(err)
 	}
