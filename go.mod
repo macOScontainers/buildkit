@@ -173,6 +173,8 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace github.com/containerd/containerd/v2 => github.com/macOScontainers/containerd/v2 v2.0.0-20231111120959-adc332757eab
-
-replace github.com/docker/docker => github.com/docker/docker v24.0.0-rc.2.0.20231110234956-3b423ea77890+incompatible
+replace (
+	github.com/containerd/containerd/v2 => github.com/macOScontainers/containerd/v2 v2.0.0-20231111120959-adc332757eab
+	github.com/docker/docker => github.com/docker/docker v24.0.0-rc.2.0.20231110234956-3b423ea77890+incompatible
+	github.com/tonistiigi/fsutil => github.com/slonopotamus/fsutil v0.0.0-20231112183302-4e3df80cb5de
+)

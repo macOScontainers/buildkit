@@ -794,7 +794,7 @@ github.com/stretchr/testify/require
 # github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635
 ## explicit
 github.com/syndtr/gocapability/capability
-# github.com/tonistiigi/fsutil v0.0.0-20230825212630-f09800878302
+# github.com/tonistiigi/fsutil v0.0.0-20230825212630-f09800878302 => github.com/slonopotamus/fsutil v0.0.0-20231112183302-4e3df80cb5de
 ## explicit; go 1.19
 github.com/tonistiigi/fsutil
 github.com/tonistiigi/fsutil/copy
@@ -1096,3 +1096,4 @@ kernel.org/pub/linux/libs/security/libcap/psx
 sigs.k8s.io/yaml
 # github.com/containerd/containerd/v2 => github.com/macOScontainers/containerd/v2 v2.0.0-20231111120959-adc332757eab
 # github.com/docker/docker => github.com/docker/docker v24.0.0-rc.2.0.20231110234956-3b423ea77890+incompatible
+# github.com/tonistiigi/fsutil => github.com/slonopotamus/fsutil v0.0.0-20231112183302-4e3df80cb5de
