@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	containerd "github.com/containerd/containerd/v2/client"
 	containerdoci "github.com/containerd/containerd/v2/pkg/oci"
 	"github.com/containerd/continuity/fs"
 	"github.com/docker/docker/pkg/idtools"
