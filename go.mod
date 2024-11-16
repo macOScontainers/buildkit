@@ -18,11 +18,11 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.48.1
 	github.com/containerd/console v1.0.4
 	github.com/containerd/containerd/api v1.8.0
-	github.com/containerd/containerd/v2 v2.0.0
+	github.com/containerd/containerd/v2 v2.0.1
 	github.com/containerd/continuity v0.4.4
 	github.com/containerd/errdefs v1.0.0
 	github.com/containerd/fuse-overlayfs-snapshotter/v2 v2.0.0
-	github.com/containerd/go-cni v1.1.10
+	github.com/containerd/go-cni v1.1.11
 	github.com/containerd/go-runc v1.1.0
 	github.com/containerd/log v0.1.0
 	github.com/containerd/nydus-snapshotter v0.14.0
@@ -188,3 +188,7 @@ require (
 	tags.cncf.io/container-device-interface v0.8.0 // indirect
 	tags.cncf.io/container-device-interface/specs-go v0.8.0 // indirect
 )
+
+replace github.com/containerd/containerd/v2 => github.com/darwin-containers/containerd/v2 v2.0.0-20241214113315-4850a67a9a04
+
+replace github.com/containerd/containerd/api => github.com/darwin-containers/containerd/api v0.0.0-20241214113315-4850a67a9a04

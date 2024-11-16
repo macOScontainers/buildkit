@@ -282,7 +282,7 @@ github.com/containerd/containerd/leases
 github.com/containerd/containerd/pkg/epoch
 github.com/containerd/containerd/pkg/randutil
 github.com/containerd/containerd/pkg/snapshotters
-# github.com/containerd/containerd/api v1.8.0
+# github.com/containerd/containerd/api v1.8.0 => github.com/darwin-containers/containerd/api v0.0.0-20241214113315-4850a67a9a04
 ## explicit; go 1.21
 github.com/containerd/containerd/api/events
 github.com/containerd/containerd/api/runtime/sandbox/v1
@@ -305,7 +305,7 @@ github.com/containerd/containerd/api/types/runc/options
 github.com/containerd/containerd/api/types/runtimeoptions/v1
 github.com/containerd/containerd/api/types/task
 github.com/containerd/containerd/api/types/transfer
-# github.com/containerd/containerd/v2 v2.0.0
+# github.com/containerd/containerd/v2 v2.0.1 => github.com/darwin-containers/containerd/v2 v2.0.0-20241214113315-4850a67a9a04
 ## explicit; go 1.22.0
 github.com/containerd/containerd/v2/client
 github.com/containerd/containerd/v2/core/containers
@@ -408,7 +408,7 @@ github.com/containerd/fifo
 # github.com/containerd/fuse-overlayfs-snapshotter/v2 v2.0.0
 ## explicit; go 1.22.0
 github.com/containerd/fuse-overlayfs-snapshotter/v2
-# github.com/containerd/go-cni v1.1.10
+# github.com/containerd/go-cni v1.1.11
 ## explicit; go 1.21
 github.com/containerd/go-cni
 # github.com/containerd/go-runc v1.1.0
@@ -1157,3 +1157,5 @@ tags.cncf.io/container-device-interface/pkg/parser
 # tags.cncf.io/container-device-interface/specs-go v0.8.0
 ## explicit; go 1.19
 tags.cncf.io/container-device-interface/specs-go
+# github.com/containerd/containerd/v2 => github.com/darwin-containers/containerd/v2 v2.0.0-20241214113315-4850a67a9a04
+# github.com/containerd/containerd/api => github.com/darwin-containers/containerd/api v0.0.0-20241214113315-4850a67a9a04
