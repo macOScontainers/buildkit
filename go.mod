@@ -188,3 +188,7 @@ require (
 	tags.cncf.io/container-device-interface v0.8.0 // indirect
 	tags.cncf.io/container-device-interface/specs-go v0.8.0 // indirect
 )
+
+replace github.com/containerd/containerd/v2 => github.com/darwin-containers/containerd/v2 v2.0.0-20241110152915-6398f3332999
+
+replace github.com/containerd/containerd/api => github.com/darwin-containers/containerd/api v0.0.0-20241110152915-6398f3332999
