@@ -201,3 +201,7 @@ exclude (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2
 )
+
+replace github.com/containerd/containerd/v2 => github.com/darwin-containers/containerd/v2 v2.0.0-20250202151638-19b4f7a4e550
+
+replace github.com/containerd/containerd/api => github.com/darwin-containers/containerd/api v0.0.0-20250202151638-19b4f7a4e550
